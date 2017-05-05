@@ -244,16 +244,16 @@ set service dns forwarding system
 set service gui http-port 80
 set service gui https-port 443
 set service gui older-ciphers enable
-set service nat rule 1 description 'Pass OpenDNS WiFiGuest'
-set service nat rule 1 destination address 208.67.222.222
+set service nat rule 1 description 'Exclude OpenDNS Wifi Guest'
+set service nat rule 1 destination group address-group OPENDNS_SERVERS_GROUP
 set service nat rule 1 destination port 53
+set service nat rule 1 exclude
 set service nat rule 1 inbound-interface switch0.6
-set service nat rule 1 inside-address address 208.67.222.222
+set service nat rule 1 inside-address port 53
 set service nat rule 1 log disable
 set service nat rule 1 protocol tcp_udp
 set service nat rule 1 type destination
-set service nat rule 2 description 'Force OpenDNS WiFiGuest'
-set service nat rule 2 destination address '!208.67.220.220'
+set service nat rule 2 description 'Force OpenDNS WiFi Guest'
 set service nat rule 2 destination port 53
 set service nat rule 2 inbound-interface switch0.6
 set service nat rule 2 inside-address address 208.67.220.220
