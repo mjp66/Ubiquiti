@@ -1,71 +1,59 @@
 set firewall all-ping enable
 set firewall broadcast-ping disable
-set firewall group address-group HOME_GROUP address 192.168.3.0/24
-set firewall group address-group HOME_GROUP description 'Home Group'
-set firewall group address-group MULTIPLE_GROUP address 192.168.3.0/24
-set firewall group address-group MULTIPLE_GROUP address 192.168.4.0/24
-set firewall group address-group MULTIPLE_GROUP address 192.168.6.0/24
-set firewall group address-group MULTIPLE_GROUP address 192.168.7.0/24
-set firewall group address-group MULTIPLE_GROUP description 'Multiple Groups'
 set firewall group address-group OPENDNS_SERVERS_GROUP address 208.67.222.222
 set firewall group address-group OPENDNS_SERVERS_GROUP address 208.67.220.220
 set firewall group address-group OPENDNS_SERVERS_GROUP description 'OpenDNS Servers'
-set firewall group address-group WIFI_GUEST_GROUP address 192.168.6.0/24
-set firewall group address-group WIFI_GUEST_GROUP description 'Wifi Guest Group'
-set firewall group address-group WIFI_IOT_GROUP address 192.168.7.0/24
-set firewall group address-group WIFI_IOT_GROUP description 'Wifi Iot Group'
-set firewall group address-group WIRED_IOT_GROUP address 192.168.4.0/24
-set firewall group address-group WIRED_IOT_GROUP description 'Wired Iot Group'
-set firewall group address-group WIRED_SEPARATE_GROUP address 192.168.5.0/24
-set firewall group address-group WIRED_SEPARATE_GROUP description 'Wired Separate Group'
+set firewall group address-group RFC-1918_GROUP address 192.168.0.0/16
+set firewall group address-group RFC-1918_GROUP address 172.16.0.0/12
+set firewall group address-group RFC-1918_GROUP address 10.0.0.0/8
+set firewall group address-group RFC-1918_GROUP description 'RFC-1918 Group'
 set firewall ipv6-receive-redirects disable
 set firewall ipv6-src-route disable
 set firewall ip-src-route disable
 set firewall log-martians enable
 set firewall name HOME_OUT default-action accept
 set firewall name HOME_OUT description 'Home Out'
-set firewall name HOME_OUT rule 1 action accept
-set firewall name HOME_OUT rule 1 description 'Allow Wired Iot Replies'
-set firewall name HOME_OUT rule 1 log disable
-set firewall name HOME_OUT rule 1 protocol all
-set firewall name HOME_OUT rule 1 source group address-group WIRED_IOT_GROUP
-set firewall name HOME_OUT rule 1 state established enable
-set firewall name HOME_OUT rule 1 state invalid disable
-set firewall name HOME_OUT rule 1 state new disable
-set firewall name HOME_OUT rule 1 state related enable
-set firewall name HOME_OUT rule 2 action drop
-set firewall name HOME_OUT rule 2 description 'Drop Rest-Of Wired Iot Traffic'
-set firewall name HOME_OUT rule 2 log disable
-set firewall name HOME_OUT rule 2 protocol all
-set firewall name HOME_OUT rule 2 source group address-group WIRED_IOT_GROUP
-set firewall name HOME_OUT rule 3 action accept
-set firewall name HOME_OUT rule 3 description 'Allow Wifi Guest Reples'
-set firewall name HOME_OUT rule 3 log disable
-set firewall name HOME_OUT rule 3 protocol all
-set firewall name HOME_OUT rule 3 source group address-group WIFI_GUEST_GROUP
-set firewall name HOME_OUT rule 3 state established enable
-set firewall name HOME_OUT rule 3 state invalid disable
-set firewall name HOME_OUT rule 3 state new disable
-set firewall name HOME_OUT rule 3 state related enable
-set firewall name HOME_OUT rule 4 action drop
-set firewall name HOME_OUT rule 4 description 'Drop Rest-Of Wifi Guest Traffic'
-set firewall name HOME_OUT rule 4 log disable
-set firewall name HOME_OUT rule 4 protocol all
-set firewall name HOME_OUT rule 4 source group address-group WIFI_GUEST_GROUP
-set firewall name HOME_OUT rule 5 action accept
-set firewall name HOME_OUT rule 5 description 'Allow Wifi Iot Reples'
-set firewall name HOME_OUT rule 5 log disable
-set firewall name HOME_OUT rule 5 protocol all
-set firewall name HOME_OUT rule 5 source group address-group WIFI_IOT_GROUP
-set firewall name HOME_OUT rule 5 state established enable
-set firewall name HOME_OUT rule 5 state invalid disable
-set firewall name HOME_OUT rule 5 state new disable
-set firewall name HOME_OUT rule 5 state related enable
-set firewall name HOME_OUT rule 6 action drop
-set firewall name HOME_OUT rule 6 description 'Drop Rest-Of Wifi Iot Traffic'
-set firewall name HOME_OUT rule 6 log disable
-set firewall name HOME_OUT rule 6 protocol all
-set firewall name HOME_OUT rule 6 source group address-group WIFI_IOT_GROUP
+set firewall name HOME_OUT rule 10 action accept
+set firewall name HOME_OUT rule 10 description 'Allow Wifi Iot Established Replies'
+set firewall name HOME_OUT rule 10 log disable
+set firewall name HOME_OUT rule 10 protocol all
+set firewall name HOME_OUT rule 10 source group address-group NETv4_switch0.7
+set firewall name HOME_OUT rule 10 state established enable
+set firewall name HOME_OUT rule 10 state invalid disable
+set firewall name HOME_OUT rule 10 state new disable
+set firewall name HOME_OUT rule 10 state related enable
+set firewall name HOME_OUT rule 20 action accept
+set firewall name HOME_OUT rule 20 description 'Allow Wired Iot Replies'
+set firewall name HOME_OUT rule 20 log disable
+set firewall name HOME_OUT rule 20 protocol all
+set firewall name HOME_OUT rule 20 source group address-group NETv4_eth1
+set firewall name HOME_OUT rule 20 state established enable
+set firewall name HOME_OUT rule 20 state invalid disable
+set firewall name HOME_OUT rule 20 state new disable
+set firewall name HOME_OUT rule 20 state related enable
+set firewall name HOME_OUT rule 30 action accept
+set firewall name HOME_OUT rule 30 description 'Allow Wifi Guest Established Replies'
+set firewall name HOME_OUT rule 30 log disable
+set firewall name HOME_OUT rule 30 protocol all
+set firewall name HOME_OUT rule 30 source group address-group NETv4_switch0.6
+set firewall name HOME_OUT rule 30 state established enable
+set firewall name HOME_OUT rule 30 state invalid disable
+set firewall name HOME_OUT rule 30 state new disable
+set firewall name HOME_OUT rule 30 state related enable
+set firewall name HOME_OUT rule 40 action accept
+set firewall name HOME_OUT rule 40 description 'Allow Wifi Spare Established Replies'
+set firewall name HOME_OUT rule 40 log disable
+set firewall name HOME_OUT rule 40 protocol all
+set firewall name HOME_OUT rule 40 source group address-group NETv4_switch0.8
+set firewall name HOME_OUT rule 40 state established enable
+set firewall name HOME_OUT rule 40 state invalid disable
+set firewall name HOME_OUT rule 40 state new disable
+set firewall name HOME_OUT rule 40 state related enable
+set firewall name HOME_OUT rule 50 action drop
+set firewall name HOME_OUT rule 50 description 'Drop RFC-1918 Traffic'
+set firewall name HOME_OUT rule 50 log disable
+set firewall name HOME_OUT rule 50 protocol all
+set firewall name HOME_OUT rule 50 source group address-group RFC-1918_GROUP
 set firewall name WAN_IN default-action drop
 set firewall name WAN_IN description 'WAN to internal'
 set firewall name WAN_IN rule 10 action accept
@@ -85,7 +73,7 @@ set firewall name WAN_LOCAL rule 20 action drop
 set firewall name WAN_LOCAL rule 20 description 'Drop invalid state'
 set firewall name WAN_LOCAL rule 20 state invalid enable
 set firewall name WIFI_GUEST_LOCAL default-action drop
-set firewall name WIFI_GUEST_LOCAL description 'Wifi Guest Local'
+set firewall name WIFI_GUEST_LOCAL description 'WiFi Guest Local'
 set firewall name WIFI_GUEST_LOCAL rule 1 action accept
 set firewall name WIFI_GUEST_LOCAL rule 1 description 'Allow DHCP'
 set firewall name WIFI_GUEST_LOCAL rule 1 destination port 67-68
@@ -93,11 +81,12 @@ set firewall name WIFI_GUEST_LOCAL rule 1 log disable
 set firewall name WIFI_GUEST_LOCAL rule 1 protocol udp
 set firewall name WIFI_GUEST_LOCAL rule 2 action accept
 set firewall name WIFI_GUEST_LOCAL rule 2 description 'Allow DNS'
+set firewall name WIFI_GUEST_LOCAL rule 2 destination group
 set firewall name WIFI_GUEST_LOCAL rule 2 destination port 53
 set firewall name WIFI_GUEST_LOCAL rule 2 log disable
 set firewall name WIFI_GUEST_LOCAL rule 2 protocol tcp_udp
 set firewall name WIFI_IOT_LOCAL default-action drop
-set firewall name WIFI_IOT_LOCAL description 'Wired Iot Local'
+set firewall name WIFI_IOT_LOCAL description 'WiFi Iot Local'
 set firewall name WIFI_IOT_LOCAL rule 1 action accept
 set firewall name WIFI_IOT_LOCAL rule 1 description 'Allow DHCP'
 set firewall name WIFI_IOT_LOCAL rule 1 destination port 67-68
@@ -109,25 +98,24 @@ set firewall name WIFI_IOT_LOCAL rule 2 destination group address-group OPENDNS_
 set firewall name WIFI_IOT_LOCAL rule 2 destination port 53
 set firewall name WIFI_IOT_LOCAL rule 2 log disable
 set firewall name WIFI_IOT_LOCAL rule 2 protocol tcp_udp
-set firewall name WIRED_IOT_LOCAL default-action drop
-set firewall name WIRED_IOT_LOCAL description 'Wired IOP Local'
-set firewall name WIRED_IOT_LOCAL rule 1 action accept
-set firewall name WIRED_IOT_LOCAL rule 1 description 'Allow DHCP'
-set firewall name WIRED_IOT_LOCAL rule 1 destination port 67-68
-set firewall name WIRED_IOT_LOCAL rule 1 log disable
-set firewall name WIRED_IOT_LOCAL rule 1 protocol udp
-set firewall name WIRED_IOT_LOCAL rule 1 source
-set firewall name WIRED_IOT_LOCAL rule 2 action accept
-set firewall name WIRED_IOT_LOCAL rule 2 description 'Allow Only OpenDNS'
-set firewall name WIRED_IOT_LOCAL rule 2 destination group address-group OPENDNS_SERVERS_GROUP
-set firewall name WIRED_IOT_LOCAL rule 2 destination port 53
-set firewall name WIRED_IOT_LOCAL rule 2 log disable
-set firewall name WIRED_IOT_LOCAL rule 2 protocol tcp_udp
+set firewall name WIFI_SPARE_LOCAL default-action drop
+set firewall name WIFI_SPARE_LOCAL description 'WiFi Spare Local'
+set firewall name WIFI_SPARE_LOCAL rule 1 action accept
+set firewall name WIFI_SPARE_LOCAL rule 1 description 'Allow DHCP'
+set firewall name WIFI_SPARE_LOCAL rule 1 destination port 67-68
+set firewall name WIFI_SPARE_LOCAL rule 1 log disable
+set firewall name WIFI_SPARE_LOCAL rule 1 protocol udp
+set firewall name WIFI_SPARE_LOCAL rule 2 action accept
+set firewall name WIFI_SPARE_LOCAL rule 2 description 'Allow Only OpenDNS'
+set firewall name WIFI_SPARE_LOCAL rule 2 destination group address-group OPENDNS_SERVERS_GROUP
+set firewall name WIFI_SPARE_LOCAL rule 2 destination port 53
+set firewall name WIFI_SPARE_LOCAL rule 2 log disable
+set firewall name WIFI_SPARE_LOCAL rule 2 protocol tcp_udp
 set firewall name WIRED_SEPARATE_IN default-action accept
 set firewall name WIRED_SEPARATE_IN description 'Wired Separate In'
 set firewall name WIRED_SEPARATE_IN rule 1 action drop
-set firewall name WIRED_SEPARATE_IN rule 1 description 'Block Multiple Networks'
-set firewall name WIRED_SEPARATE_IN rule 1 destination group address-group MULTIPLE_GROUP
+set firewall name WIRED_SEPARATE_IN rule 1 description 'Block RFC-1918 Traffic'
+set firewall name WIRED_SEPARATE_IN rule 1 destination group address-group RFC-1918_GROUP
 set firewall name WIRED_SEPARATE_IN rule 1 log disable
 set firewall name WIRED_SEPARATE_IN rule 1 protocol all
 set firewall name WIRED_SEPARATE_LOCAL default-action drop
@@ -139,21 +127,17 @@ set firewall name WIRED_SEPARATE_LOCAL rule 1 log disable
 set firewall name WIRED_SEPARATE_LOCAL rule 1 protocol udp
 set firewall name WIRED_SEPARATE_LOCAL rule 2 action accept
 set firewall name WIRED_SEPARATE_LOCAL rule 2 description 'Allow DNS'
+set firewall name WIRED_SEPARATE_LOCAL rule 2 destination group
 set firewall name WIRED_SEPARATE_LOCAL rule 2 destination port 53
 set firewall name WIRED_SEPARATE_LOCAL rule 2 log disable
 set firewall name WIRED_SEPARATE_LOCAL rule 2 protocol tcp_udp
 set firewall name WIRED_SEPARATE_OUT default-action accept
 set firewall name WIRED_SEPARATE_OUT description 'Wired Separate Out'
 set firewall name WIRED_SEPARATE_OUT rule 1 action drop
-set firewall name WIRED_SEPARATE_OUT rule 1 description 'Drop Home Network'
+set firewall name WIRED_SEPARATE_OUT rule 1 description 'Drop Non-Separate Traffic'
 set firewall name WIRED_SEPARATE_OUT rule 1 log disable
 set firewall name WIRED_SEPARATE_OUT rule 1 protocol all
-set firewall name WIRED_SEPARATE_OUT rule 1 source group address-group HOME_GROUP
-set firewall name WIRED_SEPARATE_OUT rule 2 action drop
-set firewall name WIRED_SEPARATE_OUT rule 2 description 'Drop Wired Iot Network'
-set firewall name WIRED_SEPARATE_OUT rule 2 log disable
-set firewall name WIRED_SEPARATE_OUT rule 2 protocol all
-set firewall name WIRED_SEPARATE_OUT rule 2 source group address-group WIRED_IOT_GROUP
+set firewall name WIRED_SEPARATE_OUT rule 1 source group address-group RFC-1918_GROUP
 set firewall receive-redirects disable
 set firewall send-redirects enable
 set firewall source-validation disable
@@ -164,10 +148,8 @@ set interfaces ethernet eth0 duplex auto
 set interfaces ethernet eth0 firewall in name WAN_IN
 set interfaces ethernet eth0 firewall local name WAN_LOCAL
 set interfaces ethernet eth0 speed auto
-set interfaces ethernet eth1 address 192.168.4.1/24
 set interfaces ethernet eth1 description 'Wired Iot Net'
 set interfaces ethernet eth1 duplex auto
-set interfaces ethernet eth1 firewall local name WIRED_IOT_LOCAL
 set interfaces ethernet eth1 speed auto
 set interfaces ethernet eth2 address 192.168.5.1/24
 set interfaces ethernet eth2 description 'Wired Separate Net'
@@ -184,13 +166,18 @@ set interfaces ethernet eth4 duplex auto
 set interfaces ethernet eth4 poe output off
 set interfaces ethernet eth4 speed auto
 set interfaces loopback lo
-set interfaces switch switch0 address 192.168.3.1/24
 set interfaces switch switch0 description 'Home Net'
-set interfaces switch switch0 firewall out name HOME_OUT
 set interfaces switch switch0 mtu 1500
-set interfaces switch switch0 switch-port interface eth3
-set interfaces switch switch0 switch-port interface eth4
-set interfaces switch switch0 switch-port vlan-aware disable
+set interfaces switch switch0 switch-port interface eth1 vlan pvid 7
+set interfaces switch switch0 switch-port interface eth3 vlan pvid 1
+set interfaces switch switch0 switch-port interface eth4 vlan pvid 1
+set interfaces switch switch0 switch-port interface eth4 vlan vid 6
+set interfaces switch switch0 switch-port interface eth4 vlan vid 7
+set interfaces switch switch0 switch-port vlan-aware enable
+set interfaces switch switch0 vif 1 address 192.168.3.1/24
+set interfaces switch switch0 vif 1 description 'Home Net'
+set interfaces switch switch0 vif 1 firewall out name HOME_OUT
+set interfaces switch switch0 vif 1 mtu 1500
 set interfaces switch switch0 vif 6 address 192.168.6.1/24
 set interfaces switch switch0 vif 6 description 'Wifi Guest Net'
 set interfaces switch switch0 vif 6 firewall local name WIFI_GUEST_LOCAL
@@ -199,25 +186,28 @@ set interfaces switch switch0 vif 7 address 192.168.7.1/24
 set interfaces switch switch0 vif 7 description 'Wifi Iot Net'
 set interfaces switch switch0 vif 7 firewall local name WIFI_IOT_LOCAL
 set interfaces switch switch0 vif 7 mtu 1500
+set interfaces switch switch0 vif 8 address 192.168.8.1/24
+set interfaces switch switch0 vif 8 description 'Wifi Spare Net'
+set interfaces switch switch0 vif 8 firewall local name WIFI_SPARE_LOCAL
+set interfaces switch switch0 vif 8 mtu 1500
+set protocols igmp-proxy interface switch0.1 alt-subnet 0.0.0.0/0
+set protocols igmp-proxy interface switch0.1 role upstream
+set protocols igmp-proxy interface switch0.1 threshold 1
+set protocols igmp-proxy interface switch0.7 alt-subnet 0.0.0.0/0
+set protocols igmp-proxy interface switch0.7 role downstream
+set protocols igmp-proxy interface switch0.7 threshold 1
 set service dhcp-server disabled false
-set service dhcp-server hostfile-update disable
-set service dhcp-server shared-network-name LAN1 authoritative enable
-set service dhcp-server shared-network-name LAN1 subnet 192.168.4.0/24 default-router 192.168.4.1
-set service dhcp-server shared-network-name LAN1 subnet 192.168.4.0/24 dns-server 208.67.222.222
-set service dhcp-server shared-network-name LAN1 subnet 192.168.4.0/24 dns-server 208.67.220.220
-set service dhcp-server shared-network-name LAN1 subnet 192.168.4.0/24 domain-name WiredIotNet
-set service dhcp-server shared-network-name LAN1 subnet 192.168.4.0/24 lease 86400
-set service dhcp-server shared-network-name LAN1 subnet 192.168.4.0/24 start 192.168.4.38 stop 192.168.4.243
-set service dhcp-server shared-network-name LAN2 authoritative enable
-set service dhcp-server shared-network-name LAN2 subnet 192.168.3.0/24 default-router 192.168.3.1
-set service dhcp-server shared-network-name LAN2 subnet 192.168.3.0/24 dns-server 192.168.3.1
-set service dhcp-server shared-network-name LAN2 subnet 192.168.3.0/24 domain-name HomeNet
-set service dhcp-server shared-network-name LAN2 subnet 192.168.3.0/24 lease 86400
-set service dhcp-server shared-network-name LAN2 subnet 192.168.3.0/24 start 192.168.3.38 stop 192.168.3.243
+set service dhcp-server hostfile-update enable
+set service dhcp-server shared-network-name HomeNetDHCP authoritative enable
+set service dhcp-server shared-network-name HomeNetDHCP subnet 192.168.3.0/24 default-router 192.168.3.1
+set service dhcp-server shared-network-name HomeNetDHCP subnet 192.168.3.0/24 dns-server 192.168.3.1
+set service dhcp-server shared-network-name HomeNetDHCP subnet 192.168.3.0/24 domain-name HomeNet
+set service dhcp-server shared-network-name HomeNetDHCP subnet 192.168.3.0/24 lease 86400
+set service dhcp-server shared-network-name HomeNetDHCP subnet 192.168.3.0/24 start 192.168.3.38 stop 192.168.3.243
 set service dhcp-server shared-network-name SecureNetDHCP authoritative enable
 set service dhcp-server shared-network-name SecureNetDHCP subnet 192.168.5.0/24 default-router 192.168.5.1
-set service dhcp-server shared-network-name SecureNetDHCP subnet 192.168.5.0/24 dns-server 209.244.0.3
-set service dhcp-server shared-network-name SecureNetDHCP subnet 192.168.5.0/24 dns-server 209.244.0.4
+set service dhcp-server shared-network-name SecureNetDHCP subnet 192.168.5.0/24 dns-server 8.8.8.8
+set service dhcp-server shared-network-name SecureNetDHCP subnet 192.168.5.0/24 dns-server 8.8.4.4
 set service dhcp-server shared-network-name SecureNetDHCP subnet 192.168.5.0/24 domain-name SeparateNet
 set service dhcp-server shared-network-name SecureNetDHCP subnet 192.168.5.0/24 lease 86400
 set service dhcp-server shared-network-name SecureNetDHCP subnet 192.168.5.0/24 start 192.168.5.38 stop 192.168.5.243
@@ -235,16 +225,24 @@ set service dhcp-server shared-network-name WifiIotDHCP subnet 192.168.7.0/24 dn
 set service dhcp-server shared-network-name WifiIotDHCP subnet 192.168.7.0/24 domain-name WifiIotNet
 set service dhcp-server shared-network-name WifiIotDHCP subnet 192.168.7.0/24 lease 86400
 set service dhcp-server shared-network-name WifiIotDHCP subnet 192.168.7.0/24 start 192.168.7.38 stop 192.168.7.243
-set service dhcp-server use-dnsmasq disable
-set service dns forwarding cache-size 150
-set service dns forwarding listen-on eth1
+set service dhcp-server shared-network-name WifiSpareDHCP authoritative enable
+set service dhcp-server shared-network-name WifiSpareDHCP subnet 192.168.8.0/24 default-router 192.168.8.1
+set service dhcp-server shared-network-name WifiSpareDHCP subnet 192.168.8.0/24 dns-server 208.67.222.222
+set service dhcp-server shared-network-name WifiSpareDHCP subnet 192.168.8.0/24 dns-server 208.67.220.220
+set service dhcp-server shared-network-name WifiSpareDHCP subnet 192.168.8.0/24 domain-name WifiSpareNet
+set service dhcp-server shared-network-name WifiSpareDHCP subnet 192.168.8.0/24 lease 86400
+set service dhcp-server shared-network-name WifiSpareDHCP subnet 192.168.8.0/24 start 192.168.8.38 stop 192.168.8.243
+set service dhcp-server static-arp disable
+set service dhcp-server use-dnsmasq enable
+set service dns forwarding cache-size 400
 set service dns forwarding listen-on switch0
-set service dns forwarding listen-on eth2
 set service dns forwarding system
 set service gui http-port 80
 set service gui https-port 443
 set service gui older-ciphers enable
-set service nat rule 1 description 'Exclude OpenDNS Wifi Guest'
+set service mdns repeater interface switch0.1
+set service mdns repeater interface switch0.7
+set service nat rule 1 description 'Exclude OpenDNS WiFi Guest'
 set service nat rule 1 destination group address-group OPENDNS_SERVERS_GROUP
 set service nat rule 1 destination port 53
 set service nat rule 1 exclude
@@ -256,7 +254,7 @@ set service nat rule 1 type destination
 set service nat rule 2 description 'Force OpenDNS WiFi Guest'
 set service nat rule 2 destination port 53
 set service nat rule 2 inbound-interface switch0.6
-set service nat rule 2 inside-address address 208.67.220.220
+set service nat rule 2 inside-address address 208.67.222.222
 set service nat rule 2 log disable
 set service nat rule 2 protocol tcp_udp
 set service nat rule 2 type destination
@@ -265,11 +263,13 @@ set service nat rule 5010 outbound-interface eth0
 set service nat rule 5010 type masquerade
 set service ssh port 22
 set service ssh protocol-version v2
+set service unms disable
+set system domain-name home.local
 set system host-name ubnt
-set system login user ubnt authentication encrypted-password '$6$T.n6c1glq0ynAyQX$lvJmCDWdEmn391X/of8VZoi8ZLBIWppLcLzkT1r2GGaojWBzijXp7Lqu4UBN/ZRjfp4wbtfBcfmqm606MaHU3/'
+set system login user ubnt authentication encrypted-password '$6$ouw5uactq/Mm$KHVuUPbCQTaFZZ/5CxUkiTXlKGRwIf2NmyWJCl218ASgLx2CQDfUcLWt322WFsY.dTWudByat8dxls/5N3Z0u.'
 set system login user ubnt level admin
-set system name-server 209.244.0.3
-set system name-server 209.244.0.4
+set system name-server 8.8.8.8
+set system name-server 8.8.4.4
 set system ntp server 0.ubnt.pool.ntp.org
 set system ntp server 1.ubnt.pool.ntp.org
 set system ntp server 2.ubnt.pool.ntp.org
