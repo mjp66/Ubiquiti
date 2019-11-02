@@ -23,7 +23,7 @@ set firewall name HOME_OUT rule 10 state invalid disable
 set firewall name HOME_OUT rule 10 state new disable
 set firewall name HOME_OUT rule 10 state related enable
 set firewall name HOME_OUT rule 20 action accept
-set firewall name HOME_OUT rule 20 description 'Allow Wired Iot Replies'
+set firewall name HOME_OUT rule 20 description 'Allow Wired Iot Established Replies'
 set firewall name HOME_OUT rule 20 log disable
 set firewall name HOME_OUT rule 20 protocol all
 set firewall name HOME_OUT rule 20 source group address-group NETv4_eth1
@@ -76,9 +76,10 @@ set firewall name WIFI_GUEST_LOCAL default-action drop
 set firewall name WIFI_GUEST_LOCAL description 'WiFi Guest Local'
 set firewall name WIFI_GUEST_LOCAL rule 1 action accept
 set firewall name WIFI_GUEST_LOCAL rule 1 description 'Allow DHCP'
-set firewall name WIFI_GUEST_LOCAL rule 1 destination port 67-68
+set firewall name WIFI_GUEST_LOCAL rule 1 destination port 67
 set firewall name WIFI_GUEST_LOCAL rule 1 log disable
 set firewall name WIFI_GUEST_LOCAL rule 1 protocol udp
+set firewall name WIFI_GUEST_LOCAL rule 1 source port 68
 set firewall name WIFI_GUEST_LOCAL rule 2 action accept
 set firewall name WIFI_GUEST_LOCAL rule 2 description 'Allow DNS'
 set firewall name WIFI_GUEST_LOCAL rule 2 destination group
@@ -89,9 +90,10 @@ set firewall name WIFI_IOT_LOCAL default-action drop
 set firewall name WIFI_IOT_LOCAL description 'WiFi Iot Local'
 set firewall name WIFI_IOT_LOCAL rule 1 action accept
 set firewall name WIFI_IOT_LOCAL rule 1 description 'Allow DHCP'
-set firewall name WIFI_IOT_LOCAL rule 1 destination port 67-68
+set firewall name WIFI_IOT_LOCAL rule 1 destination port 67
 set firewall name WIFI_IOT_LOCAL rule 1 log disable
 set firewall name WIFI_IOT_LOCAL rule 1 protocol udp
+set firewall name WIFI_IOT_LOCAL rule 1 source port 68
 set firewall name WIFI_IOT_LOCAL rule 2 action accept
 set firewall name WIFI_IOT_LOCAL rule 2 description 'Allow Only OpenDNS'
 set firewall name WIFI_IOT_LOCAL rule 2 destination group address-group OPENDNS_SERVERS_GROUP
@@ -102,9 +104,10 @@ set firewall name WIFI_SPARE_LOCAL default-action drop
 set firewall name WIFI_SPARE_LOCAL description 'WiFi Spare Local'
 set firewall name WIFI_SPARE_LOCAL rule 1 action accept
 set firewall name WIFI_SPARE_LOCAL rule 1 description 'Allow DHCP'
-set firewall name WIFI_SPARE_LOCAL rule 1 destination port 67-68
+set firewall name WIFI_SPARE_LOCAL rule 1 destination port 67
 set firewall name WIFI_SPARE_LOCAL rule 1 log disable
 set firewall name WIFI_SPARE_LOCAL rule 1 protocol udp
+set firewall name WIFI_SPARE_LOCAL rule 1 source port 68
 set firewall name WIFI_SPARE_LOCAL rule 2 action accept
 set firewall name WIFI_SPARE_LOCAL rule 2 description 'Allow Only OpenDNS'
 set firewall name WIFI_SPARE_LOCAL rule 2 destination group address-group OPENDNS_SERVERS_GROUP
@@ -122,9 +125,10 @@ set firewall name WIRED_SEPARATE_LOCAL default-action drop
 set firewall name WIRED_SEPARATE_LOCAL description 'Wired Separate Local'
 set firewall name WIRED_SEPARATE_LOCAL rule 1 action accept
 set firewall name WIRED_SEPARATE_LOCAL rule 1 description 'Allow DHCP'
-set firewall name WIRED_SEPARATE_LOCAL rule 1 destination port 67-68
+set firewall name WIRED_SEPARATE_LOCAL rule 1 destination port 67
 set firewall name WIRED_SEPARATE_LOCAL rule 1 log disable
 set firewall name WIRED_SEPARATE_LOCAL rule 1 protocol udp
+set firewall name WIRED_SEPARATE_LOCAL rule 1 source port 68
 set firewall name WIRED_SEPARATE_LOCAL rule 2 action accept
 set firewall name WIRED_SEPARATE_LOCAL rule 2 description 'Allow DNS'
 set firewall name WIRED_SEPARATE_LOCAL rule 2 destination group
