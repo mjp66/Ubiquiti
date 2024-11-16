@@ -1,5 +1,5 @@
-
-| Version | Supported          |
+C
+|Version|Supported|m<3.8>
 | ------- | ------------------ |
 | 5.1.x   | :white_check_mark: |
 | 5.0.x   | :x:                |
